@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculadora</title>
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+</head>
+<body>
+	
+	<div id="contenedor">
+		<input type="text" id="txtA">
+		<input type="text" id="txtB">
+		<button class="btnOperador">+</button>
+		<button class="btnOperador">-</button>
+		<button class="btnOperador">*</button>
+		<button class="btnOperador">/</button>
+		<input type="text" id="txtResultado">
+	</div>
+
+
+	<script>
+
+		$('button.btnOperador').on('click', operar);
+
+		function operar(){
+			var btn = $(this);
+			var a = parseInt( $('#txtA').val() );
+			var b = parseInt( $('#txtB').val() );
+
+			var z = eval(a+btn.text()+b);
+			
+
+			/*
+			switch(btn.text()){
+				case '+':
+					z = a+b;
+					break;
+				case '-':
+					z = a-b;
+					break;
+				case '*':
+					z = a*b;
+					break;
+				case '/':
+					z = a/b;
+					break;
+			}*/
+			$('#txtResultado').val(z);
+
+		}
+
+
+
+	</script>
+
+
+</body>
+</html>

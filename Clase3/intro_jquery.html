@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Introducción a jQuery</title>
+
+		<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	</head>
+	<body>
+
+		<button id="btnSaludar">Saludar</button>
+		<button id="btnMostrarToast">Toast</button>
+
+		<div id="divSaludo" style="display:none;">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+
+		
+		<script>
+
+			
+			var btnSaludar = $('#btnSaludar');
+			var btnMostrarToast = $('#btnMostrarToast');
+
+
+			btnSaludar.on('click', saludar); // para asignar los eventos es mejor usar el método on
+			btnMostrarToast.on('click', mostrarToast);
+
+
+
+			function saludar(event){
+				$('#divSaludo').slideDown(4000, function(){
+					alert('saludo completo');
+				});
+			}
+
+
+			function mostrarToast(){
+				var toast = $('<div>');
+				toast.css({
+					'display':'none',
+					'position':'fixed',
+					'top':'10px',
+					'right':'10px',
+					'background-color':'#6D6',
+					'color':'#FFF',
+					'width':'150px',
+					'padding':'7px 10px',
+					'border-radius':'5px',
+					'box-shadow':'0px 0px 10px 5px #DDD'
+				});
+				toast.text('Mensaje de prueba');
+				
+				$('body').append(toast); //agregar un nuevo elemento al árbol DOM
+				toast.fadeIn(3000)
+					 .delay(8000)
+					 .fadeOut(2000, function(){
+					 	//toast.remove();
+					 	$(this).remove(); //$(event.target)
+					 	
+					 });
+			}
+
+	
+
+		</script>
+
+		
+	</body>
+</html>

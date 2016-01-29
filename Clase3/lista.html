@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+</head>
+<body>
+	
+	<h1>Ejemplos de creación de elementos basados en listas</h1>
+
+	<div id="lista"></div>
+	
+	<script>
+		var libros = [
+			{nombre:'Dracula', autor:'Bram Stocker'},
+			{nombre:'Por quién doblan las campanas', autor:'Ernest Hemingway'},
+			{nombre:'Cien años de Soledad', autor:'Gabo'}
+		];
+
+		var lista = $('#lista');
+		//$.each(libros, function(i, libro){
+		//for (var i = 0; i < libros.length; i++) {
+		//for(var i in libros){
+		libros.forEach(function(libro, i){
+			var libro = libros[i];
+			var div = $('<div>');
+			var link = $('<a>')
+							.text(libro.nombre+' - '+libro.autor)
+							.attr({
+								'href':'http://www.google.com?q='+libro.nombre, 
+								'target':  '_blank'
+							})
+							.appendTo(div);
+			lista.append(div);
+		//}
+		});
+
+
+
+	</script>
+
+</body>
+</html>

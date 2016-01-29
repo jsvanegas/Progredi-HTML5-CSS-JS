@@ -1,0 +1,64 @@
+AJAX --> NO es un lenguaje
+ 		 NO es una tecnología
+ 		 NO es un framework
+
+ 		 Conjunto de tecnologías aplicadas en la web para hacer peticiones más ligeras
+
+
+Ciclo de vida de una aplicación Web.
+
+Sincrono
+
+	El cliente queda inhabilitado, cada vez que se hace una solicitud al servidor
+
+
+	Facebook:
+
+	El muro -> una nueva publicación
+	Chat -> 
+	Notificaciones
+
+
+JAVA -> JSF: Controles que hacen peticiones asincronas
+ASP  -> Telerik, AJAX Control Toolkit
+
+Laravel | Symfony -> Integración AJAX
+
+
+
+VENTAJAS: Las peticiones son muchísimo más rápidas.
+
+REST -> JSON.
+
+
+AJAX: 
+	Asynchronus Javascript And XML
+
+
+						request
+	Cliente  --------------------------->   Servidor
+												|
+												|
+						response				|
+	Cliente  <---------------------------   Servidor
+						 (XML)
+						 (JSON)
+
+
+ActiveX  XMLHTTP -> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
