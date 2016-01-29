@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Introducción a AJAX</title>
+	
+	<link rel="stylesheet" href="css/bootstrap.min.css" media="screen" type="text/css">
+	<style>
+
+		.resumen{
+			word-wrap:break-word;
+		}
+
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	
+	<div class="col-md-12">
+		<div class="row">
+			<h1>Libros</h1>
+			<button class="btn btn-success" id="btnCargarLibros">Consultar Libros</button>
+			<button class="btn btn-primary" id="btnAgregarLibro">Agregar Libro</button>
+		</div>
+		<div class="col-md-6">
+			<div id="divLibros" class="col-md-12">
+			</div>
+		</div>
+		<div class="col-md-6" id="detalles">
+			<h2 class="titulo"></h2>
+			<h3 class="autor"></h3>
+			<p class="resumen"></p>
+			<p class="precio"></p>
+
+		</div>
+
+	</div>
+
+
+
+	<div class="modal fade" tabindex="-1" id="dialogoNuevoLibro" role="dialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Agregar nuevo libro</h4>
+	      </div>
+
+	      <div class="modal-body">
+	      	
+	      	<div class="row">
+	      		<div class="col-md-6 form-group">
+	      			<label for="txtNombre">Nombre:</label>
+	      			<input type="text" class="form-control" id="txtNombre">
+      			</div>
+      			<div class="col-md-6 form-group">
+	      			<label for="txtAutor">Autor:</label>
+	      			<input type="text" class="form-control" id="txtAutor">
+      			</div>
+	      	</div> 
+	      	<div class="row">
+	      		<div class="col-md-12 form-group">
+	      			<label for="txtResumen">Resumen:</label>
+	      			<textarea id="txtResumen" class="form-control"></textarea>
+      			</div>
+	      	</div>
+	      	<div class="row">
+	      		<div class="col-md-6 form-group">
+	      			<label for="txtPrecio">Precio:</label>
+	      			<input type="text" class="form-control" id="txtPrecio">
+      			</div>
+	      	</div>
+
+	      </div>
+
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+	      </div>
+
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	
+
+
+	<script>
+
+		/*
+		$.get('libros.txt', function(resultado){
+			//console.info(JSON.stringify(coleccion));   //Serializar los datos
+			var coleccion = JSON.parse(resultado); //Deserializar
+			
+		});
+		*/	
+		
+		$('#btnCargarLibros').on('click', function(){
+			$.post('libros.txt', onCargarLibrosCompleto);
+		});
+
+		$('#btnAgregarLibro').on('click', mostrarDialogo);
+		$('#btnGuardar').on('click', agregarLibro);
+
+
+
+		function onCargarLibrosCompleto(resultado){
+			window.resultado = resultado = JSON.parse(resultado); //convertimos el string en un JSON
+			cargarListaLibros();
+		}
+
+		function cargarListaLibros(){
+			var divLibros = $('#divLibros').html('');
+			for(var i=0; i<resultado.length; i++){
+				var libro = resultado[i];
+				
+				var divLibro = $('<div>');
+				divLibro.addClass('col-md-8');
+
+				var h2 = $('<h2>');
+				var p = $('<p>');
+				h2.text(libro.nombre);
+				p.text(libro.autor);
+				divLibro.append(h2).append(p);
+
+
+				var divBoton = $('<div>').addClass('col-md-4');
+				var btnDetalles = $('<button>');
+				btnDetalles.attr('data-indice', i);
+				btnDetalles.addClass('btn btn-primary').html('<i class="glyphicon glyphicon-plus"></i>');
+				divBoton.append(btnDetalles);
+
+
+				btnDetalles.on('click', mostrarDetalleLibro);
+
+
+				divLibros.append(divLibro).append(divBoton);
+			}
+		}
+
+		function mostrarDetalleLibro(){
+			var indice = $(this).attr('data-indice');
+			var libro = resultado[indice];
+
+			var detalles = $('#detalles');
+			detalles.find('.titulo').text(libro.nombre);
+			detalles.find('.autor').text(libro.autor);
+			detalles.find('.resumen').text(libro.resumen);
+			detalles.find('.precio').text(libro.precio);
+		}
+
+		function mostrarDialogo(){
+			$('#dialogoNuevoLibro').modal({'show':true});
+		}
+
+		function agregarLibro(){
+			var nuevo = {
+				nombre: $('#txtNombre').val(),
+				autor: $('#txtAutor').val(),
+				resumen: $('#txtResumen').val(),
+				precio: $('#txtPrecio').val()
+			};
+			if (resultado && resultado.length>0) {
+				resultado.push(nuevo);
+				cargarListaLibros();
+
+				$('#dialogoNuevoLibro').modal('hide')
+						.find('input:text, textarea')
+							.val('');
+
+
+			}else{
+				console.error('No se pueden agregar libros');
+			}
+		}
+
+
+
+
+
+
+
+	</script>
+
+
+
+</body>
+</html>
