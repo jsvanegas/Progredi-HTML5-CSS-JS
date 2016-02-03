@@ -1,0 +1,94 @@
+//agregar un campo
+db.personas.update({nombre:'Miguel'}, {$set:{apellido:'Higuera'}})
+
+
+//guardar en memoria
+> var x = db.personas.findOne()
+> x
+{ "_id" : ObjectId("56b127db68258c202b34f887"), "nombre" : "Sergio" }
+
+
+///guardar los datos en un arreglo
+ var x = db.personas.find().toArray()
+
+
+
+//actualizar para todos
+> db.personas.update({}, {$set:{empresa:'Appfuture'}}, {multi:true})
+
+
+//consultar los documentos con un campo especifico
+> db.personas.find({'apellido':{$exists:true}})
+
+
+//agregar varios registros con un ciclo
+> for (var i = 0; i < 10; i++) {
+... db.personas.insert({nombre:'Persona'+i, 'empresa':'Appfuture'});
+}
+
+
+//consultar con una expresión regular
+> db.personas.find({nombre:{$regex:'^Persona'}})
+
+//like
+> db.personas.find({nombre:{$regex:/ona4/}})
+
+
+//insertar registros con arreglos
+> db.personas.insert({nombre:'Leonardo', responsabilidades:['desarrollador', 'tester', 'PO']})
+
+
+//consultar dentro de un arreglo
+> db.personas.find({responsabilidades:'tester'})
+
+///$in
+> db.personas.find({responsabilidades:{$in:['tester','PO', 'Diseñador']}})
+
+//$all
+> db.personas.find({responsabilidades:{$all:['tester','PO']}})
+
+
+///consultar entre rangos
+db.personas.find({edad:{$lt:35, $gte:18} })
+
+
+///eliminar registros
+> db.personas.remove({nombre:{$regex:'^Persona'}})
+
+
+//consultas con $or
+db.personas.find({$or:[{nombre:'miguel'}, {nombre:'Sergio'}]})
+
+
+//proyecciones
+> db.personas.find({$or:[{nombre:'miguel'}, {nombre:'Sergio'}]}, {_id:0, nombre:true, empresa:true})
+
+
+///contar registros:
+> db.personas.count({$or:[{nombre:'miguel'}, {nombre:'Sergio'}]}, {_id:0, nombre:true, empresa:true})
+> db.personas.find({$or:[{nombre:'miguel'}, {nombre:'Sergio'}]}, {_id:0, nombre:true, empresa:true}).count()
+
+
+
+//insertar fechas
+> db.personas.insert({nombre:'Manuel', fechaIngreso:new Date('2010-01-20')})
+
+
+					var post = {
+						titulo:'Primer post',
+						autor:'Pepito Perez',
+						categorias:['Tecnología', 'Blog', 'Multimedia'],
+						publicacion:'bla bla bla bla bla',
+						visitas:5,
+						likes:10,
+						unlikes:2,
+						compartido:3,
+						comentarios:[
+							{autor:'Carlos', comenario:'Bienvenido'},
+							{autor:'Laura', comenario:'Gracias por el post'}
+						]
+					}
+
+
+///order by, skip, limit
+> db.personas.find().sort({nombre:1}).limit(2).skip(3)
