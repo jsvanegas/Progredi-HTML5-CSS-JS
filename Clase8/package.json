@@ -1,0 +1,23 @@
+{
+  "name": "clase8",
+  "version": "1.0.0",
+  "description": "Proyecto de introducción a Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.js",
+    "JS",
+    "Express",
+    "Mongodb"
+  ],
+  "author": "jsvanegas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "mongodb": "^2.1.4"
+  }
+}
