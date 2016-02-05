@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Registrar un nuevo artículo</title>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+</head>
+<body>
+	
+	<div id="contendor">
+		<h1>Registrar un nuevo artículo</h1>
+		<div>
+			<div>
+				<label for="txtTitulo">Título:</label>
+				<input type="text" id="txtTitulo">
+			</div>
+
+			<div>
+				<label for="txtAutor">Autor:</label>
+				<input type="text" id="txtAutor">
+			</div>
+
+			<div>
+				<label for="txtCategorias">Categorías:</label>
+				<input type="text" id="txtCategorias">
+			</div>
+
+			<div>
+				<label for="txtPublicacion">Autor:</label>
+				<textarea name="" id="txtPublicacion"></textarea>
+			</div>
+	
+			<button id="btnGuardar">Guardar</button>
+		</div>
+
+	</div>
+
+	<script>
+
+	$('#btnGuardar').on('click', guardarArticulo);
+
+	function guardarArticulo(){
+		var post = {
+			titulo:$('#txtTitulo').val(),
+			autor:$('#txtAutor').val(),
+			categorias:$('#txtCategorias').val(),
+			publicacion:$('#txtPublicacion').val()
+		};
+		$.ajax({
+			url:'/articulos/registrar',
+			type:'post',
+			dataType:'json',
+			data:post,
+			success:onGuardarCompleto,
+			error:onError
+		});
+	}
+
+	function onGuardarCompleto(resultado){
+		if (resultado.codigo===200) {
+			alert(resultado.mensaje);
+		}
+	}
+
+	function onError(err){
+		console.error(err);
+	}
+
+
+
+	</script>
+
+</body>
+</html>
