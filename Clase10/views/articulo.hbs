@@ -1,0 +1,19 @@
+<p>{{articulo.autor}}</p>
+
+<div>
+	<p>{{articulo.publicacion}}</p>
+</div>
+<div>
+	<span>Visitas: {{articulo.visitas}}</span>
+	<span>Likes: {{articulo.likes}}</span>
+	<span>Unlikes: {{articulo.unlikes}}</span>
+</div>
+
+<div id="divComentarios">
+	{{#each articulo.comentarios}}
+	<div class="comentario">
+		{{this.comentario}}
+		<p>{{this.autor}}</p>
+	</div>
+	{{/each}}
+</div>

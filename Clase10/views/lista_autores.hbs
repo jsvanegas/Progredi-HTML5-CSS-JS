@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Listar de Autores</title>
+	<style>
+		
+		.autor{
+			border-top:solid 1px #333;
+			border-bottom:solid 1px #AAA;
+			padding: 15px 20px;
+		}
+
+		.autor:nth-child(2n+1){
+			background-color: #DDD;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div>
+		<h1>Lista de Autores</h1>
+		<div id="divListado">
+		{{#autores}}
+			<div class="autor">
+				Nombre: {{nombre}} - Empresa: {{empresa}}
+			</div>
+		{{/autores}}
+		</div>
+	</div>
+
+
+
+</body>
+</html>

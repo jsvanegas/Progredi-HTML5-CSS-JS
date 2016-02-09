@@ -1,0 +1,77 @@
+preprocesador de CSS
+
+LESS
+Stylus
+SASS
+
+
+LESS --> 
+
+		archivo.less  (no lo reconoce el navegador)
+			escribir CSS pensando en programación
+
+				variables
+				selectores anidados
+				mixins
+				mixins parametrizables (métodos)
+				operaciones aritméticas
+
+				*herencia
+				importanción
+
+			Escibir hojas de estilo reutilizables en menos líneas
+
+		archivo.less ----> PROCESA - COMPILA
+
+		--> Resultado = archivo.css
+
+
+
+Escalabilidad Horizontal
+
+	proyectoX
+		views
+		public
+			js
+				jquery.js
+				bootstrap.js
+				facturas.js
+				pedidos.js
+				nomina.js
+				...
+				...
+				...
+				...
+			css
+				facturas.css
+				pedidos.css
+				nomina.css
+
+
+
+
+Escalabilidad Vertical
+
+
+	ProyectoX
+		facturacion
+			views
+			public
+			js
+				main.js
+				estadocuenta.js
+				referencias.js
+			css
+				facturacion.css
+		nomina
+			views
+			public 
+			js	
+				main.js
+				empleados.js
+				liquidacion.js
+			css
+				nomina.css
+
+
+

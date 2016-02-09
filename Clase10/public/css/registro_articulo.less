@@ -1,0 +1,88 @@
+@fuentePrincipal:#333;
+@fuenteSecundaria:#69F;
+@familiaFuentePrincipal:Tahoma, Verdana, Helvetica;
+@tamFuentePredenterminada:1.8em;
+@colorBoton:#4D0;
+
+body{
+	color:@fuentePrincipal;
+	font-family: @familiaFuentePrincipal;
+}
+
+#contenedor{
+	color:#333;
+	.borde_redondo; //reutilizando la regla borde_redondo
+	
+	h1{
+		//.titulo();
+		font-size: @tamFuentePredenterminada;
+		&:hover{
+			color:@fuenteSecundaria;
+			font-size: @tamFuentePredenterminada + 0.2em;
+			border-bottom: none;
+		}
+	}
+
+	h2{
+		.titulo(1.8em);
+	}
+
+	.div-control{
+		border-bottom: solid 1px #DDD;	
+		label{
+			display: block;
+		}
+		input[type="text"]{
+			height: 26px;
+			padding: 3px 6px 2px 4px;
+			width: 50%;
+			.borde_redondo; //reutilizando la regla borde_redondo
+		}
+
+		textarea{
+			.borde_redondo;
+			width: 50%;
+			max-width: 50%;
+			min-height: 40px;
+			max-height: 80px;
+		}
+	}
+
+	.div-control:nth-child(2n+1){
+		background-color: #F9F9F9;
+	}
+
+	
+	button{
+		height: 30px;
+		min-width: 70px;
+		border-radius: 7px;
+		background-color: @colorBoton;
+		color:#FFF;
+		border:none;
+		font-size: 16px;
+		font-weight: bold;
+
+
+		&:hover{
+			cursor:pointer;
+			background-color: @colorBoton + #920;
+		}
+	}
+
+}
+
+//mixins
+.borde_redondo{
+	border-radius: 7px;
+	border:solid 1px #DEDEDE;
+	margin: 5px;
+}
+
+.titulo(@font_size:2em){
+	font-size: @font_size;
+	border-bottom: solid 1px #F90;
+	margin-bottom: 5px;
+}
+
+

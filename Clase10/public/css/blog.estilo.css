@@ -1,0 +1,28 @@
+body{
+	font-family: Tahoma, sans-serif;
+	font-size: 14px;
+	color:#666;
+}
+
+#contenedor{
+	margin: 0 auto;
+	width: 90%;
+	border:solid 1px #DDD;
+	border-radius: 15px;
+	padding: 0px;
+}
+
+	#cabecera{
+		height: 100px;
+		border-bottom: solid 1px #333;
+	}
+
+	#contenido{
+		padding: 20px;
+		min-height: 400px;
+	}
+
+	#piePagina{
+		text-align: center;
+		border-top: solid 1px #333;
+	}
